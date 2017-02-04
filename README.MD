@@ -1,0 +1,1 @@
+Welcome to my Voting App. This App is built for the FCC Backend Challenge "Voting App". It is built from scratch, guided by the clementinejs FCC boilerplate (which was not cloned, but recreated from scratch instead). This app uses node.js, express, mongodb with mongoose, passport, express-session and maybe a few other things.
