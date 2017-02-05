@@ -1,0 +1,29 @@
+body {
+  background: #242815;
+}
+
+.main {
+  //background-color: #5D653B;
+  text-align: center;
+}
+
+.menu {
+  background-color: #3E4425;
+  height: 50px;
+}
+
+.welcome {
+  padding: 20px;
+  background-color: #5D653B;
+  height: 150px;
+}
+
+.pollcontrolls {
+  background-color: #3E4425;
+  padding:20px;
+}
+
+.polllist {
+  background-color: #5D653B;
+  padding: 20px;
+}
