@@ -2,21 +2,7 @@
 
 var Poll = require('../models/polls.js');
 
-
-var firstPoll = new Poll();
-firstPoll.question = "WHAT?";
-firstPoll.options = "ABC";
-firstPoll.author = "EMRE";
-firstPoll.save(function (err) {
-  if (err) {
-    throw err;
-  }
-
-  console.log("first user created!");
-});
-
 function PollHandler () {
-  console.log("PollHandler active");
 
   this.getPolls = function (req, res) {
     console.log("connecting to db");
@@ -24,9 +10,9 @@ function PollHandler () {
       .find({})
       .exec(function (error, poll) {
         if (error) { throw error; }
-        var result = poll[0]
-        //console.log(poll);
+        console.log(poll);
         res.json(poll);
+        res.end();
       })
     console.log("Polls received");
   }
@@ -44,10 +30,22 @@ function PollHandler () {
       if (err) {
         throw err;
       }
-
-      console.log("new user was created!");
+      console.log("new poll was created!");
+      res.end();
     });
+  }
 
+  this.removePoll = function (req, res) {
+    console.log('###############');
+    console.log('    -    pollHandler.server.js    - ');
+    console.log("deleting poll");
+    console.log(req.body);
+    Poll
+      .findByIdAndRemove(req.body.id)
+      .exec(function(error, ok) {
+        console.log('succesfully deleted');
+        res.end();
+      })
   }
 
 

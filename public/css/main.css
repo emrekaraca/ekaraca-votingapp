@@ -18,7 +18,7 @@ body {
   height: 150px;
 }
 
-.pollcontrolls {
+.pollcontrols {
   background-color: #3E4425;
   padding:20px;
 }
@@ -26,4 +26,8 @@ body {
 .polllist {
   background-color: #5D653B;
   padding: 20px;
+}
+
+.addpollform {
+  display: none
 }

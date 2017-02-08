@@ -16,23 +16,35 @@ var ajaxFunctions = {
   ajaxRequest: function ajaxRequest (method, url, data, callback) {
     console.log('###############');
     console.log('    -     ajax funcitons    -');
+    console.log('current method:' + method);
     console.log("request started");
     console.log('data received');
     console.log(data);
-    alert('break');
     var xmlhttp = new XMLHttpRequest();
-    /*
+
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        callback(null, xmlhttp.response);
+        console.log('calling back');
+        callback(xmlhttp.response);
       }
-    };
-*/
+    }
+
     xmlhttp.open(method, url, true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     console.log('data to be sent:');
     console.log(data);
-    alert('break');
-    xmlhttp.send(data);
+    //alert('break');
+    if (method == 'POST' || method == 'DELETE') {
+      console.log('sending data');
+      console.log(callback);
+      (function(){
+        xmlhttp.send(data)
+      }, function () {
+        callback();
+      })
+      xmlhttp.send(data);
+    } else {
+      xmlhttp.send();
+    }
   }
 };
