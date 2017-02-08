@@ -18,29 +18,26 @@
           <div class="pollcontrolls">
             <form action="">
               Question:<br>
-              <input type="text" name="firstname" value="Mickey">
+              <input type="text" name="question" id="question" value="">
               <br>
               Answer Options:<br>
-              <input type="text" name="firstname" value="Mickey">
+              <input type="text" name="options" id="options" value="">
               <br>
               Your Name:<br>
-              <input type="text" name="lastname" value="Mouse">
+              <input type="text" name="author" id="author" value="">
               <br><br>
-              <input type="submit" value="Submit">
+              <input type="submit" value="Add Poll" id="submitbtn">
             </form>
+        </div>
+        <div class="polllist">
+          <p>Here you can see all polls</p>
+          <div id="pollsContainer"></div>
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="/common/ajax-functions.js"></script>
 
-
-
-
-
-
-
-
-
-
+    <script type="text/javascript" src="/controllers/pollHandler.addpoll.client.js"></script>
 
   </body>
 </html>

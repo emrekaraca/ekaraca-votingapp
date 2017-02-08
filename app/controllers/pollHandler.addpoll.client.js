@@ -4,16 +4,21 @@
   var newPollBtn = document.querySelector('#addpoll');
   var myPollsBtn = document.querySelector('#mypolls');
   var pollsContainer = document.querySelector('#pollsContainer');
+  var questionField = document.querySelector('#question');
+  var optionsField = document.querySelector('#options');
+  var authorField = document.querySelector('#author');
   var apiUrl = appUrl + '/api/polls';
   var apiUrl2 = appUrl + '/api/polls';
 
   pollsContainer.innerHTML = "TEST";
 
   function loadPolls (data) {
-    console.log("load Polls running...");
+    console.log('###################');
+    console.log('   -  pollHandler.newpoll.client.js  - ');
+    console.log("load Polls is running...");
     pollsContainer.innerHTML = "TEST2";
     var pollsObject = JSON.parse(data);
-    console.log(pollsObject);
+    //console.log(pollsObject);
     pollsContainer.innerHTML = '<ul id="pollslist"></ul>';
     var pollsList = document.querySelector('#pollslist');
     for (var i=0; i<pollsObject.length; i++) {
@@ -21,9 +26,26 @@
     }
   }
 
-  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, null, loadPolls));
+  //ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, {author:"xx"}, loadPolls));
+
+  var submitbtn = document.querySelector('#submitbtn');
+
+  submitbtn.addEventListener('click', function () {
+    var question = questionField.value;
+    var options = optionsField.value;
+    var author = authorField.value;
+    var data = ({question: question, options: options, author: author});
+    alert("sbumitbtn clicked");
+    console.log(JSON.stringify(data));
+    alert('break');
+    ajaxFunctions.ajaxRequest('POST', apiUrl, JSON.stringify(data), function () {
+        //ajaxFunctions.ajaxRequest('GET', apiUrl, null, loadPolls)
+      });
+  })
+
 
 })();
+
 
 
 //ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', apiUrl, data, loadPolls));

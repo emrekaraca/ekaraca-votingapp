@@ -37,9 +37,17 @@ module.exports = function (app) {
     .post(pollHandler.addPoll)
 */
   app.route('/api/polls')
-    .get(pollHandler.getPolls);
+    .get(pollHandler.getPolls)
+    //.post(pollHandler.newPoll)
 
-
+  app.post('/api/polls', function (req, res) {
+    console.log('######################');
+    console.log('   -    index.js     -');
+    console.log("POST API ROUTE REACHED");
+    console.log('Sending:');
+    console.log(req.body);
+    pollHandler.newPoll(req, res);
+  })
 
 
 // ROUTE FILE HAS API URL FOR NEWPOLL POST ACTION AND INVOKES SERVER FN TO STORE NEWPOLL DATA IN DB

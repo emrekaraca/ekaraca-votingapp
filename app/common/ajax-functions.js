@@ -3,7 +3,6 @@
 var appUrl = window.location.origin;
 var ajaxFunctions = {
   ready: function ready (fn) {
-    console.log("ready fn started");
     if (typeof fn !== 'function') {
       return;
     }
@@ -14,17 +13,26 @@ var ajaxFunctions = {
 
     document.addEventListener('DOMContentLoaded, fn, false');
   },
-  ajaxRequest: function ajaxRequest (method, url, callback) {
+  ajaxRequest: function ajaxRequest (method, url, data, callback) {
+    console.log('###############');
+    console.log('    -     ajax funcitons    -');
     console.log("request started");
+    console.log('data received');
+    console.log(data);
+    alert('break');
     var xmlhttp = new XMLHttpRequest();
-
+    /*
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        callback(xmlhttp.response);
+        callback(null, xmlhttp.response);
       }
     };
-
+*/
     xmlhttp.open(method, url, true);
-    xmlhttp.send();
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    console.log('data to be sent:');
+    console.log(data);
+    alert('break');
+    xmlhttp.send(data);
   }
 };

@@ -3,12 +3,15 @@
 var express = require('express'),
     routes = require('./app/routes/index.js'),
     //passport = require('passport'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
     //session = require('express-session');
 
 var app = express(),
     path = process.cwd();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(path + '/public'));
 app.use('/common', express.static(process.cwd() + '/app/common'));

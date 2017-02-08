@@ -2,6 +2,7 @@
 
 var Poll = require('../models/polls.js');
 
+
 var firstPoll = new Poll();
 firstPoll.question = "WHAT?";
 firstPoll.options = "ABC";
@@ -24,9 +25,29 @@ function PollHandler () {
       .exec(function (error, poll) {
         if (error) { throw error; }
         var result = poll[0]
-        console.log(poll);
+        //console.log(poll);
         res.json(poll);
       })
+    console.log("Polls received");
+  }
+
+  this.newPoll = function (req, res) {
+    console.log('###############');
+    console.log('    -    pollHandler.server.js    - ');
+    console.log("adding poll");
+    console.log(req.body);
+    var newPoll = new Poll();
+    newPoll.question = req.body.question;
+    newPoll.options = req.body.options;
+    newPoll.author = req.body.author;
+    newPoll.save(function (err) {
+      if (err) {
+        throw err;
+      }
+
+      console.log("new user was created!");
+    });
+
   }
 
 
