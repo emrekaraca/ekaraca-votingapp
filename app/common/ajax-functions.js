@@ -22,12 +22,15 @@ var ajaxFunctions = {
     console.log(data);
     var xmlhttp = new XMLHttpRequest();
 
-    xmlhttp.onreadystatechange = function () {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        console.log('calling back');
-        callback(xmlhttp.response);
+    if (callback) {
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+          console.log('calling back');
+          callback(xmlhttp.response);
+        }
       }
     }
+
 
     xmlhttp.open(method, url, true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");

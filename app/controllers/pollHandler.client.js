@@ -17,7 +17,7 @@
     pollsContainer.innerHTML = '<ul id="pollslist"></ul>';
     var pollsList = document.querySelector('#pollslist');
     for (var i=0; i<pollsObject.length; i++) {
-      pollsList.insertAdjacentHTML('beforeend', '<p>' + pollsObject[i].question + ' // ' + pollsObject[i].author + '</p>');
+      pollsList.insertAdjacentHTML('beforeend', '<p class="pollEntry">' + pollsObject[i].question + ' // ' + pollsObject[i].author + '</p>');
     }
   }
 

@@ -53,9 +53,14 @@
     pollsContainer.innerHTML = '<ul id="pollslist"></ul>';
     var pollsList = document.querySelector('#pollslist');
     for (var i=0; i<pollsObject.length; i++) {
-      pollsList.insertAdjacentHTML('beforeend', '<p>Question: ' + pollsObject[i].question + ' // Author: ' + pollsObject[i].options + ' // Author: ' + pollsObject[i].author + ' <button class="btn btn-danger deletebtn" id="' + pollsObject[i]._id +'">Delete</Button></p>');
+      pollsList.insertAdjacentHTML('beforeend', '<p class="pollEntry" id="' + pollsObject[i]._id + '"><span>' + pollsObject[i].question + ' </span><button class="btn btn-danger deletebtn" id="' + pollsObject[i]._id +'">Delete</Button></p>');
     }
-    var deleteBtn = document.querySelector('.deletebtn');
+    var pollEntry = document.querySelector('.pollEntry');
+    pollEntry.addEventListener('click', function () {
+      var id = this.id;
+      ajaxFunctions.ajaxRequest('GET', apiUrl + '/' + id, JSON.stringify(id), null)
+    })
+    var deleteBtn = document.querySelectorAll('.deletebtn');
     deleteBtn.addEventListener('click', function () {
       var id = ({id: this.id});
       ajaxFunctions.ajaxRequest('DELETE', apiUrl, JSON.stringify(id), function () {
@@ -69,10 +74,15 @@
 
   submitbtn.addEventListener('click', function () {
     var question = questionField.value;
-    var options = optionsField.value;
+    var options = {};
     var author = authorField.value;
     questionField.value = "";
-    option1.value = "";
+    for (var i=1; i<=optionsCounter; i++) {
+      if (document.querySelector('#option'+i).value !== "") {
+        options["option"+i] = document.querySelector('#option'+i).value;
+      }
+      document.querySelector('#option'+i).value = "";
+    };
     authorField.value = "";
     pollButtons.style.display = "initial";
     addPollForm.style.display = "none";

@@ -19,7 +19,7 @@ body {
 }
 
 .pollcontrols {
-  background-color: #3E4425;
+  background-color: #B2BC87;
   padding:20px;
 }
 
@@ -30,4 +30,28 @@ body {
 
 .addpollform {
   display: none
+}
+
+.pollEntry {
+  background-color: #D8E0B8;
+  height: 50px;
+  width: 800px;
+  border-radius: 6px;
+  margin: auto;
+  line-height: 50px;
+  font-size: 20px;
+  margin-top: 5px;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.pollEntry:hover {
+  background-color: #F4F8E3
+}
+
+.deletebtn {
+  //position: relative;
+  transform: translateY(-2px);
+  text-align: right;
 }

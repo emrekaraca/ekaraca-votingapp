@@ -24,9 +24,6 @@ module.exports = function (app) {
     res.sendFile(path + '/public/userpolls.html');
   });
 
-  app.get('/newpoll', function (req, res) {
-    res.sendFile(path + '/public/newpoll.html');
-  });
 /*
   app.route('/api/polls/:pollid')
     .get(pollHandler.getPoll(req.params.pollid))
@@ -57,6 +54,10 @@ module.exports = function (app) {
     pollHandler.removePoll(req, res);
   })
 
+  app.get('/api/polls/:id', function (req, res) {
+    var pollId = req.params.id;
+    pollHandler.getPoll(pollId, res)
+  })
 
 
 // ROUTE FILE HAS API URL FOR NEWPOLL POST ACTION AND INVOKES SERVER FN TO STORE NEWPOLL DATA IN DB

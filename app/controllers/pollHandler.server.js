@@ -48,6 +48,12 @@ function PollHandler () {
       })
   }
 
+  this.getPoll = function (req, res) {
+    console.log("working");
+    console.log(req);
+    res.end(req)
+  }
+
 
 
 
